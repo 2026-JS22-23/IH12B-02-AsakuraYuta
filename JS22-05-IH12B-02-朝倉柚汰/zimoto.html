@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>豊川稲荷 | 地元の観光名所</title>
+  <!-- The callback parameter is required, so we use console.debug as a noop -->
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAKLjisxFelKwIl1_G6MiEO9-ya7Twr5s&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5efe3;
+  color: #333;
+  font-family: "Noto Serif JP", "Noto Sans JP", serif;
+}
+
+.header {
+  text-align: center;
+  padding: 25px 20px 20px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  color: #8b3a2b;
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Shippori Mincho", serif;
+  font-size: 48px;
+  color: #8f3020;
+}
+.gokaityou {
+  font-family: "Shippori Mincho", serif;
+  font-size: 25px;
+  color: #8f3020;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.gokaityou-image {
+  display: block;
+  width: 100%;
+  margin: 20px auto 0;
+}
+
+.sub {
+  margin-top: 12px;
+  font-family: "Shippori Mincho", serif;
+  font-size: 15px;
+}
+
+main {
+  width: 90%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+section {
+  margin-top: 50px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section-label .kanji {
+  font-family: "Shippori Mincho", serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #8f3020;
+  white-space: nowrap;
+}
+
+.section-label .rule {
+  flex: 1;
+  height: 1px;
+  margin-left: 15px;
+  background: #c7a85a;
+}
+
+.map-plaque {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd2bd;
+}
+
+#map,
+#map2 {
+  width: 100%;
+  height: 400px;
+}
+
+.map-caption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #666;
+}
+
+.lede {
+  font-family: "Shippori Mincho", serif;
+  font-size: 20px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.lede span {
+  color: #8f3020;
+  font-weight: bold;
+}
+
+.body-text {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd2bd;
+  padding: 20px;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-family: "Shippori Mincho", serif;
+  color: #8f3020;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0 0 15px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  padding: 30px 0;
+  text-align: center;
+  font-size: 11px;
+  color: #777;
+}
+
+@media (max-width: 620px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  #map,
+  #map2 {
+    height: 300px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="header">
+
+    <div class="eyebrow">Toyokawa Inari</div>
+    <h1>豊川稲荷</h1>
+    <div class="sub">円福山 妙厳寺 — 商売繁盛と縁結びの聖地</div>
+  </div>
+
+  <main>
+    <section>
+      <div class="section-label">
+        <span class="kanji">お知らせ</span>
+        <span class="rule"></span>
+      </div>
+      
+    <div class="gokaityou">本殿創建100年に向け、72年ぶりの御開帳開催</div>
+    <img src="gokaityou.jpg" alt="御開帳の様子" class="gokaityou-image">
+  
+    </section>
+    <section>
+      <div class="section-label">
+        <span class="kanji">所在地</span>
+        <span class="rule"></span>
+      </div>
+      <div class="map-plaque">
+        <div id="map"></div>
+        <div class="map-caption">愛知県豊川市豊川西町１</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <span class="kanji">紹介</span>
+        <span class="rule"></span>
+      </div>
+      <p class="lede">
+        <span>日本三大稲荷</span>の一つに数えられる、豊川が誇る名所。
+      </p>
+      <p class="body-text">
+        豊川稲荷は、正式には円福山妙厳寺という曹洞宗の寺院です。狐にまたがる稲荷神「吒枳尼真天（だきにしんてん）」を祀り、
+        商売繁盛・家内安全のご利益を求めて全国から参拝者が訪れます。地元・豊川では初詣や七五三の際に多くの人が集う、
+        まさに街の象徴的な存在です。正月には全国から約145万人の参拝者が訪れ、境内は大変賑わいます。
+      </p>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <span class="kanji">見どころ</span>
+        <span class="rule"></span>
+      </div>
+      <div class="cards">
+        <div class="card">
+
+          <h3>霊狐塚（れいこづか）</h3>
+          <p>
+            境内奥に広がる、千体以上のきつね像が並ぶ神秘的な場所。大小さまざまな石像がびっしりと並ぶ光景は圧巻で、
+            豊川稲荷を象徴する撮影スポットにもなっています。
+          </p>
+          <img src="fox.jpg" alt="霊狐塚" width="50%" height="">
+        </div>
+        <div class="card">
+
+          <h3>門前町のグルメ</h3>
+          <p>
+            表参道には稲荷寿司の名店や食べ歩きグルメの店が並びます。参拝の後は、
+            名物のいなり寿司片手に門前町をぶらぶら散策するのがおすすめです。
+          </p>
+          <img src="shop.jpg" alt="門前商店街" width="50%" height="">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">
+        <span class="kanji">アクセス</span>
+        <span class="rule"></span>
+      </div>
+      <p class="body-text">
+        豊川稲荷へは、JR飯田線「JR豊川駅」・名鉄豊川線の「豊川稲荷駅」から徒歩約5分でアクセスできます。
+        名古屋駅からは電車で約1時間、豊橋駅からは約20分で到着します。
+      </p>
+      <div class="map-plaque">
+        <div id="map2"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    copyright &copy; <script>new Date().getFullYear() > 2000 && document.write("" + new Date().getFullYear());</script> Asakurayuta. All rights reserved.
+  </footer>
+  <script>
+    function initMap() {
+      // マップ
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 18,
+        center: { lat: 34.824775, lng: 137.393159 },
+        zoomControl: true,
+        mapTypeControl: true,
+        streetViewControl: false
+      });
+
+      const infoWindow = new google.maps.InfoWindow();
+
+      const locations = [
+        {
+          name: "豊川稲荷本殿",
+          lat: 34.824528732142966,
+          lng: 137.3921737931085,
+          content: "<h2>豊川稲荷本殿</h2><p>本殿の中心となる場所です。</p><img src='inari.jpg' alt='豊川稲荷本殿' width='200' height='150'>"
+        },
+        {
+          name: "霊狐塚",
+          lat: 34.82669994810238,
+          lng: 137.3914475699501,
+          content: "<h2>霊狐塚</h2><p>たくさんの狐像が並ぶ見どころです。</p><img src='fox.jpg' alt='霊狐塚' width='200' height='150'>"
+        },
+        {
+          name: "門前商店街",
+          lat: 34.82463816087825,
+          lng: 137.39478723023413,
+          content: "<h2>門前商店街</h2><p>食べ歩きや散策が楽しめる場所です。</p><img src='shop.jpg' alt='門前商店街' width='200' height='150'>"
+        }
+      ];
+
+      locations.forEach(function (loc) {
+        const marker = new google.maps.Marker({
+          position: { lat: loc.lat, lng: loc.lng },
+          map: map,
+          title: loc.name
+        });
+
+        marker.addListener("click", () => {
+          infoWindow.setContent(loc.content);
+          infoWindow.open(map, marker);
+        });
+      });
+
+      map.addListener("click", () => {
+        infoWindow.close();
+      });
+    };
+    
+    function initMap2() {
+      const map2 = new google.maps.Map(document.getElementById("map2"), {
+        zoom: 18,
+        center: { lat: 34.823028929197356, lng: 137.3964795686957 },
+        zoomControl: true,
+        mapTypeControl: true,
+        streetViewControl: false
+      });
+      // 線を引いてみる　名古屋駅から豊川稲荷までのルートを表示する
+        var routeCoords = [
+          //34.82249004030414, 137.39643267990033
+          {lat: 34.82249004030414, lng: 137.39643267990033},
+          {lat: 34.823028929197356, lng: 137.3964795686957},
+          {lat: 34.82388537036266, lng: 137.39420546211994},
+          {lat: 34.82462632914397, lng: 137.39455712808228},
+          
+        ];
+        var route = new google.maps.Polyline({
+          path: routeCoords,
+          strokeColor: "red",
+          strokeWeight:4
+        });
+        route.setMap(map2);
+    }
+
+    // マップの初期化を待つ
+    window.initMap = initMap;
+    window.initMap2 = initMap2;
+    // マップの初期化が完了したら、マップを表示する
+    window.addEventListener("load", () => {
+      initMap();
+      initMap2();
+    });
+  </script>
+</body>
+
+</html>
