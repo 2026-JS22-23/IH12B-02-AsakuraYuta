@@ -1,6 +1,4 @@
 
-
-
 // TodoItemコンポーネントを作成する
 // @param {string} text - Todoのテキスト
 // @returns {JSX.Element} TodoItemコンポーネント
@@ -23,7 +21,7 @@ export default function App() {
     <input value={text} onChange={(e) => setText(e.target.value)} />
     <button onClick={add}>追加</button>
     <ul>{todos.map((todo,i) => <li key={todo.id}>{todo.text}</li>)}</ul>
-    <p>残り {todos.length} 件</p>
+    <p>残り {parseInt(todos.length)} 件</p>
   </div>);
   
 }
